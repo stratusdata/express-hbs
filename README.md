@@ -51,15 +51,18 @@ There are three ways to use a layout, listed in the order in which they are chec
 
 1. Declarative within a page. Use handlebars comment. `LAYOUT` is a relative path from template.
 
+```
     {{!< LAYOUT}}
-
+```
 2. As an option to render
 
+```javascript
     res.render('veggies', {
       title: 'My favorite veggies',
       veggies: veggies,
       layout: 'layout/veggie'
     });
+```
     
    This option also allows for default layout suppression by passing in a falsey Javascript value as the value of the `layout` property:
 
@@ -83,7 +86,6 @@ If you want to store your templates in a mongodb instance, you simply have to en
 of its own.
 
 ```javascript
-
     // somewhere in your express app
     app.engine('hbs', hbs.express3({
         provider : new hbs.providers.MongoProvider({
@@ -91,7 +93,6 @@ of its own.
             viewPath : app.set('views')          // required b/c express passes absolute urls but we want to use relative ones internally
         })
     }));
-
 ```
 
 Store your templates in the specified mongodb instance in a collection called hbs_templates (this may be configurable in the future).  The documents should look like:
